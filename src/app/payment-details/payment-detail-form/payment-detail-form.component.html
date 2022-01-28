@@ -1,4 +1,4 @@
-<form action="">
+<form novalidate #form="ngForm" (submit)="onSubmit(form)">
     <!-- creamos un input de tipo hidden
     y dentro enviamos como valor el Id, es traifo desde
     el formData que esta inicializado en el service. -->
@@ -7,21 +7,30 @@
     <div class="form-group">
         <label>Card Owner Name</label>
         <input class="form-control form-control-lg" placeholder="Fullname" 
-            name="CardOwnerName" #CardOwnerName="ngModel"[(ngModel)]="service.formData.CardOwnerName"/>
+           required [class.invalid]="CardOwnerName.invalid && CardOwnerName.touched" name="CardOwnerName" #CardOwnerName="ngModel"[(ngModel)]="service.formData.CardOwnerName"
+           />
     </div>
     <div class="form-group">
         <label>Card Number</label>
         <input class="form-control form-control-lg" placeholder="Card number" 
-            name="CardNumber" #CardNumber="ngModel"[(ngModel)]="service.formData.CardNumber"/>
+        required [class.invalid]="CardNumber.invalid && CardNumber.touched" name="CardNumber" #CardNumber="ngModel"[(ngModel)]="service.formData.CardNumber"
+        maxlength="16" minlength="16"/>
     </div>
-    <div class="form-group">
-        <label>Exp Date</label>
-        <input class="form-control form-control-lg" placeholder="MM/YY" 
-            name="ExpDate" #ExpDate="ngModel"[(ngModel)]="service.formData.ExpDate"/>
-    </div>  
-    <div class="form-group">
-        <label>Security Code</label>
-        <input type="password" class="form-control form-control-lg" placeholder="SecurityCode" 
-            name="SecurityCode" #SecurityCode="ngModel"[(ngModel)]="service.formData.SecurityCode"/>
-    </div>    
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label>Exp Date</label>
+            <input class="form-control form-control-lg" placeholder="MM/YY" 
+            required [class.invalid]="ExpDate.invalid && ExpDate.touched" name="ExpDate" #ExpDate="ngModel"[(ngModel)]="service.formData.ExpDate"
+            maxlength="5" minlength5/>
+        </div>  
+        <div class="form-group col-md-6">
+            <label>Security Code</label>
+            <input type="password" class="form-control form-control-lg" placeholder="SecurityCode" 
+            required [class.invalid]="SecurityCode.invalid && SecurityCode.touched"  name="SecurityCode" #SecurityCode="ngModel"[(ngModel)]="service.formData.SecurityCode"
+            maxlength="3" minlength="3"/>
+        </div>    
+    </div>
+    <div class="form-group py-3">
+        <button class="btn btn-info btn-lg btn-block" type="submit"[disabled]="form.invalid">Submit</button>
+    </div>
 </form>
