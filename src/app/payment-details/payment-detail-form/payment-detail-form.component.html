@@ -1,0 +1,27 @@
+<form action="">
+    <!-- creamos un input de tipo hidden
+    y dentro enviamos como valor el Id, es traifo desde
+    el formData que esta inicializado en el service. -->
+    <input type="hidden" value="service.formData.PaymentDetailId">
+    
+    <div class="form-group">
+        <label>Card Owner Name</label>
+        <input class="form-control form-control-lg" placeholder="Fullname" 
+            name="CardOwnerName" #CardOwnerName="ngModel"[(ngModel)]="service.formData.CardOwnerName"/>
+    </div>
+    <div class="form-group">
+        <label>Card Number</label>
+        <input class="form-control form-control-lg" placeholder="Card number" 
+            name="CardNumber" #CardNumber="ngModel"[(ngModel)]="service.formData.CardNumber"/>
+    </div>
+    <div class="form-group">
+        <label>Exp Date</label>
+        <input class="form-control form-control-lg" placeholder="MM/YY" 
+            name="ExpDate" #ExpDate="ngModel"[(ngModel)]="service.formData.ExpDate"/>
+    </div>  
+    <div class="form-group">
+        <label>Security Code</label>
+        <input type="password" class="form-control form-control-lg" placeholder="SecurityCode" 
+            name="SecurityCode" #SecurityCode="ngModel"[(ngModel)]="service.formData.SecurityCode"/>
+    </div>    
+</form>
